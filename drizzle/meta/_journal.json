@@ -8,6 +8,13 @@
       "when": 1753245530682,
       "tag": "0000_unusual_preak",
       "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "7",
+      "when": 1753246058010,
+      "tag": "0001_blushing_white_tiger",
+      "breakpoints": true
     }
   ]
 }

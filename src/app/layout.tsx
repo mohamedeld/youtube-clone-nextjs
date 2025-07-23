@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
+import { TRPCReactProvider } from "@/trpc/client";
 
 const interSans = Inter({
   subsets: ["latin"],
@@ -18,10 +19,8 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body
-        className={`${interSans.className} antialiased`}
-      >
-        {children}
+      <body className={`${interSans.className} antialiased`}>
+        <TRPCReactProvider>{children}</TRPCReactProvider>
       </body>
     </html>
   );
