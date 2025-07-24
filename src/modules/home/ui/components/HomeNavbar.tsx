@@ -4,7 +4,7 @@ import Link from "next/link"
 import SearchInput from "./SearchInput"
 import AuthButton from "@/modules/auth/ui/components/AuthButton"
 
-const HomeNavbar = () => {
+const HomeNavbar =async () => {
   return (
     <nav className="fixed left-0 top-0 right-0 h-16 bg-white flex items-center px-2 pr-5 z-50">
         <div className="flex items-center gap-4 w-full">
