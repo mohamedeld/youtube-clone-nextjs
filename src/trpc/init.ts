@@ -5,6 +5,9 @@ import { auth } from '../../auth';
 import { db } from '@/db';
 import { users } from '@/db/schema';
 import { eq } from 'drizzle-orm';
+import { rateLimit } from '@/lib/ratelimit';
+
+
 export const createTRPCContext = cache(async () => {
   /**
    * @see: https://trpc.io/docs/server/context
@@ -29,6 +32,9 @@ export const createTRPCRouter = t.router;
 export const createCallerFactory = t.createCallerFactory;
 export const baseProcedure = t.procedure;
 
+
+
+
 export const protectedProcedure = t.procedure.use(async function isAuthed(opts){
   const {ctx} = opts;
   if(!ctx.userId){
@@ -42,6 +48,13 @@ export const protectedProcedure = t.procedure.use(async function isAuthed(opts){
      throw new TRPCError({
       code:"UNAUTHORIZED",
       message:"Unauthenticated"
+    })
+  }
+  const {success} = await rateLimit.limit(user?.id);
+  if(!success){
+     throw new TRPCError({
+      code:"TOO_MANY_REQUESTS",
+      message:"Too Many Requests"
     })
   }
   return opts.next({
