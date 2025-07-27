@@ -1,4 +1,4 @@
-import { pgTable, text, timestamp, uuid } from "drizzle-orm/pg-core";
+import { pgTable, text, timestamp, uniqueIndex, uuid } from "drizzle-orm/pg-core";
 
 
 export const users = pgTable("users",{
@@ -9,3 +9,11 @@ export const users = pgTable("users",{
     createdAt:timestamp("created_at").defaultNow().notNull(),
     updatedAt:timestamp("updated_at").defaultNow().notNull(),
 })
+
+export const categories = pgTable("categories",{
+    id:uuid("id").primaryKey().defaultRandom(),
+    name:text("name").notNull().unique(),
+    description:text("description"),
+    createdAt:timestamp("created_at").defaultNow().notNull(),
+    updatedAt:timestamp("updated_at").defaultNow().notNull(),
+},(t)=> [uniqueIndex("name_index").on(t.name)]);
