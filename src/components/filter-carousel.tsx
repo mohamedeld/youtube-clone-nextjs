@@ -56,7 +56,7 @@ const FilterCarousel = ({ value, isLoading, onSelect, data }: IProps) => {
         className="w-full px-12"
       >
         <CarouselContent className="-ml-3">
-         {!isLoading && <CarouselItem onSelect={()=> onSelect?.(null)} className="pl-3 basis-auto">
+         {!isLoading && <CarouselItem onClick={()=> onSelect?.("")} className="pl-3 basis-auto">
             <Badge
                 variant={!value ? "default":"secondary"}
                 className="rounded-lg px-3 py-1 cursor-pointer whitespace-normal text-sm"
@@ -70,7 +70,7 @@ const FilterCarousel = ({ value, isLoading, onSelect, data }: IProps) => {
             </CarouselItem>
           ))}
           {!isLoading && data?.map((item)=>(
-            <CarouselItem onSelect={()=> onSelect(item?.value)} key={item?.value} className="pl-3 basis-auto">
+            <CarouselItem onClick={()=> onSelect(item?.value)} key={item?.value} className="pl-3 basis-auto">
                <Badge
                 variant={value === item?.value ? "default":"secondary"}
                 className="rounded-lg px-3 py-1 cursor-pointer whitespace-normal text-sm"

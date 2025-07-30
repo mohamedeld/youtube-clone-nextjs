@@ -3,6 +3,7 @@ import { Inter } from "next/font/google";
 import "./globals.css";
 import { TRPCReactProvider } from "@/trpc/client";
 import SessionClientProvider from "@/components/SessionClientProvider";
+import { NuqsAdapter } from "nuqs/adapters/next/app";
 
 const interSans = Inter({
   subsets: ["latin"],
@@ -20,11 +21,13 @@ export default function RootLayout({
 }>) {
   return (
     <SessionClientProvider>
-    <html lang="en">
-      <body className={`${interSans.className} antialiased`}>
-        <TRPCReactProvider>{children}</TRPCReactProvider>
-      </body>
-    </html>
+      <NuqsAdapter>
+        <html lang="en">
+          <body className={`${interSans.className} antialiased`}>
+            <TRPCReactProvider>{children}</TRPCReactProvider>
+          </body>
+        </html>
+      </NuqsAdapter>
     </SessionClientProvider>
   );
 }
