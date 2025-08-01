@@ -3,7 +3,7 @@ import { NextResponse } from "next/server";
 import type { NextRequest } from "next/server";
 import { auth } from "./auth"; // adjust if your NextAuth config path is different
 
-const protectedRoutes = ["/"]; // Example: pages that require auth
+const protectedRoutes = ["/","/studio"]; // Example: pages that require auth
 
 export async function middleware(request: NextRequest) {
   const session = await auth(); // Uses NextAuth's auth helper
