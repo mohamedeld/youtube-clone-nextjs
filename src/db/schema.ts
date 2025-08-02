@@ -40,7 +40,7 @@ export const categoryRelations = relations(categories,({many})=>({
 export const videos = pgTable("videos", {
   id: uuid("id").primaryKey().defaultRandom(),
   title: text("title").notNull(),
-  description: text("title"),
+  description: text("description"),
   userId:uuid("user_id").references(()=> users?.id,{
     onDelete:"cascade"
   }).notNull(),
