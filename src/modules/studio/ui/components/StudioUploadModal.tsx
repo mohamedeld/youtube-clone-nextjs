@@ -1,5 +1,6 @@
 "use client";
 
+import ResponsiveDialog from "@/components/responsive-dialog";
 import { Button } from "@/components/ui/button";
 import { useTRPC } from "@/trpc/client";
 import { useMutation } from "@tanstack/react-query";
@@ -22,10 +23,15 @@ const StudioUploadModal = () => {
   }));
   
   return (
+    <>
     <Button variant={"secondary"} onClick={()=> create?.mutate()} disabled={create?.isPending}>
         {create?.isPending ?<Loader2 className="animate-spin"/> :<PlusIcon/>}
         Create
     </Button>
+    <ResponsiveDialog title="Upload a video" open={!!create?.data} onOpenChange={()=> create?.reset()}>
+      <></>
+    </ResponsiveDialog>
+    </>
   )
 }
 

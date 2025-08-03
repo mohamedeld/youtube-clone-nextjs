@@ -32,7 +32,7 @@ const InfiniteScroll = ({
         <div ref={targetRef} className="h-1"/>
         {hasNextPage ? 
         <Button variant={"secondary"} disabled={
-            hasNextPage || !isFetchingNextPage
+            !hasNextPage || isFetchingNextPage
         } onClick={()=> fetchNextPage()}>
             {isFetchingNextPage ? "Loading...":"Load more"}
         </Button> :  <p className="text-xs text-muted-foreground">
